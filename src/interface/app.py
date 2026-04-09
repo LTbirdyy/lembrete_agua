@@ -6,7 +6,7 @@ from src.interface.layout import *
 def configurar_icone(janela):
     import os
     base_dir = os.path.dirname(os.path.dirname(__file__))
-    caminho = os.path.join(base_dir, "assets", "icon.ico")
+    caminho = os.path.join(base_dir, "assets", "imagem", "agua.ico")
     janela.iconbitmap(caminho)
 
 
