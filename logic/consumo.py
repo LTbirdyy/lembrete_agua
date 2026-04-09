@@ -9,6 +9,10 @@ def definir_meta(meta):
 def adicionar_consumo(quantidade):
     global consumo_atual
 
+    # So pra garantir de não colocar que bebu -1 agua
+    if quantidade< 0:
+        return consumo_atual
+
     consumo_atual += quantidade
     return consumo_atual
 

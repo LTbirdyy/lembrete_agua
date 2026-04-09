@@ -1,6 +1,4 @@
-import tkinter as tk
 from interface import handlers
-from interface.estilo import *
 from interface.layout import *
 
 # Função para deixar centralizado em relação ao monitor

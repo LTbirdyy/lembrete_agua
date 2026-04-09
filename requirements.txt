@@ -1,6 +1,10 @@
+
+pytest
+flake8
+
+# São bibliotecas padrões do python
 winsound
 tkinter
 os
 json
 datetime
-sys

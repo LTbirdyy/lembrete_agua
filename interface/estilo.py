@@ -1,4 +1,4 @@
-# interface/styles.py
+# Só os estilo de texto, cord de fundo entre outras coisas pra interface
 
 BG = "#fafafa"
 FG = "#333333"
