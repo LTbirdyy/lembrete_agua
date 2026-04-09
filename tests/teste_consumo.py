@@ -6,6 +6,7 @@ from logic.consumo import (
     get_meta
 )
 
+
 # Função central (regra de negócio)
 def test_calcular_progresso():
     definir_meta(1000)
@@ -34,7 +35,6 @@ def test_valor_negativo():
     adicionar_consumo(-get_consumo())  # reset
 
     total = adicionar_consumo(-500)
-
 
     assert total >= 0
 

@@ -1,6 +1,7 @@
 from interface import handlers
 from interface.layout import *
 
+
 # Função para deixar centralizado em relação ao monitor
 def centralizar(janela):
     janela.update_idletasks()
@@ -9,6 +10,7 @@ def centralizar(janela):
     x = (janela.winfo_screenwidth() // 2) - (largura // 2)
     y = (janela.winfo_screenheight() // 2) - (altura // 2)
     janela.geometry(f"+{x}+{y}")
+
 
 # Criar janela principal do programa, além de configurar ela e manter aberta e demais coisas
 def criar_app():
@@ -39,27 +41,34 @@ def criar_app():
     label_prog.pack(pady=4)
 
     # Mensagem na tela de para erro/sucesso
-    label_mensagem = criar_label(janela, "",)
+    label_mensagem = criar_label(janela, "", )
     label_mensagem.pack(pady=5)
 
     # Botão de iniciar
-    btn_iniciar = criar_botao(janela, "Iniciar",
-                    lambda: handlers.iniciar(janela, input_meta,input_intervalo, label_mensagem))
+    btn_iniciar = criar_botao(
+        janela,
+        "Iniciar",
+        lambda: handlers.iniciar(janela, input_meta,
+                                 input_intervalo, label_mensagem))
+
     btn_iniciar.pack(pady=3)
 
     # Botão de beber água
-    btn_agua = criar_botao(janela, "Bebi água",
-                lambda: handlers.beber_agua(label_mensagem,input_consumo, barra, label_prog))
+    btn_agua = criar_botao(
+        janela, "Bebi água",
+        lambda: handlers.beber_agua(label_mensagem, input_consumo,
+                                    barra, label_prog))
+
     btn_agua.config(bg="#1191b8")
     btn_agua.pack(pady=8)
 
-
     # Botão para reiniciar
-    btn_parar = criar_botao(janela, "Parar",
-                lambda: handlers.parar(label_mensagem,barra,label_prog,input_consumo))
+    btn_parar = criar_botao(
+        janela, "Parar",
+        lambda: handlers.parar(label_mensagem, barra,
+                               label_prog, input_consumo))
+
     btn_parar.config(bg="#c7200e")
     btn_parar.pack(pady=8)
     centralizar(janela)
     return janela
-
-

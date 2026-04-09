@@ -6,6 +6,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 caminho = os.path.join(BASE_DIR, "data", "historico.json")
 
+
 # Função para salvar data de cada meta
 def salvar_dia(consumo, meta):
 

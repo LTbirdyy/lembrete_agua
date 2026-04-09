@@ -36,7 +36,8 @@ def iniciar(janela, input_meta, input_intervalo, label_mensagem):
 
         # Caminho em caso de sem erro
         if meta <= 0 or intervalo <= 0:
-            label_mensagem.config(text="Valores devem ser maiores que zero!", fg="red")
+            label_mensagem.config(text="Valores devem ser maiores que zero!",
+                                  fg="red")
             return
 
         # Pega o valor que o user colocou como meta daiira
@@ -62,7 +63,7 @@ def iniciar(janela, input_meta, input_intervalo, label_mensagem):
 
 
 # Função para a quantidade de água ja consumida
-def beber_agua(label_mensagem,input_consumo, barra_progresso, label_progresso):
+def beber_agua(label_mensagem, input_consumo, barra_progresso, label_progresso):
     global rodando
     try:
         quantidade = int(input_consumo.get())
@@ -89,7 +90,8 @@ def beber_agua(label_mensagem,input_consumo, barra_progresso, label_progresso):
     except ValueError:
         label_mensagem.config(text="Digite apenas números!", fg="red")
 
-def parar(label_mensagem,barra_progresso,label_progresso, input_consumo):
+
+def parar(label_mensagem, barra_progresso, label_progresso, input_consumo):
     global rodando
     rodando = False
 
@@ -107,4 +109,3 @@ def parar(label_mensagem,barra_progresso,label_progresso, input_consumo):
     input_consumo.delete(0, 'end')
 
     label_mensagem.config(text="Intervalo parado e dados salvos", fg="orange")
-
