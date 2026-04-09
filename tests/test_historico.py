@@ -1,5 +1,5 @@
 import os
-from logic.historico import salvar_dia
+from src.logic.historico import salvar_dia
 
 
 def test_salvar_historico():

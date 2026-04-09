@@ -1,8 +1,7 @@
 # interface/layout.py
 import tkinter as tk
 from tkinter import ttk
-from interface.estilo import *
-
+from src.interface.estilo import *
 
 def criar_label(master, texto):
     return tk.Label(master, text=texto, fg=FG, bg=BG, font=FONT_LABEL)

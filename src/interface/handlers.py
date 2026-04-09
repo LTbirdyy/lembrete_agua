@@ -1,6 +1,6 @@
-from logic.alerta import tocar_alerta
-from logic.historico import salvar_dia
-from logic.consumo import (
+from src.logic.alerta import tocar_alerta
+from src.logic.historico import salvar_dia
+from src.logic.consumo import (
     definir_meta,
     adicionar_consumo,
     calcular_progresso,
@@ -48,7 +48,7 @@ def iniciar(janela, input_meta, input_intervalo, label_mensagem):
         # Preciso converte para milisengundos para usar o after() dpo tkinter
 
         # temp ta em seg pra testar
-        intervalo_ms = intervalo * 1000  # minutos -> mili
+        intervalo_ms = intervalo * 60000  # minutos -> mili
         rodando = True
 
         # Iniciando timer

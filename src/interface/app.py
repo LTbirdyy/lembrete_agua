@@ -1,6 +1,14 @@
-from interface import handlers
-from interface.layout import *
+from src.interface import handlers
+from src.interface.layout import *
+import src.interface.layout
+# Adicionar icon
 
+
+def configurar_icone(janela):
+    import os
+    base_dir = os.path.dirname(os.path.dirname(__file__))
+    caminho = os.path.join(base_dir, "assets", "icon.ico")
+    janela.iconbitmap(caminho)
 
 # Função para deixar centralizado em relação ao monitor
 def centralizar(janela):
@@ -14,7 +22,11 @@ def centralizar(janela):
 
 # Criar janela principal do programa, além de configurar ela e manter aberta e demais coisas
 def criar_app():
+
+    # Caminho pro icone de agua
+
     janela = tk.Tk()
+    configurar_icone(janela)
     janela.title("lembrete de água")
     janela.configure(bg=BG)
     janela.geometry("500x500")

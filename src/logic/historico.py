@@ -2,7 +2,8 @@ import json
 import os
 from datetime import datetime
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+# Salvar os dados na raiz do projeto
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 caminho = os.path.join(BASE_DIR, "data", "historico.json")
 

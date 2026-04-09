@@ -1,4 +1,4 @@
-from interface.app import criar_app
+from src.interface.app import criar_app
 
 if __name__ == "__main__":
     app = criar_app()

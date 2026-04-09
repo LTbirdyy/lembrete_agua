@@ -1,4 +1,4 @@
-from logic.consumo import (
+from src.logic.consumo import (
     definir_meta,
     adicionar_consumo,
     calcular_progresso,
