@@ -1,84 +1,67 @@
 import tkinter as tk
+from interface import handlers
+from interface.estilo import *
+from interface.layout import *
 
-from interface.handlers import iniciar, lembrar, beber_agua, parar
+# Função para deixar centralizado em relação ao monitor
+def centralizar(janela):
+    janela.update_idletasks()
+    largura = janela.winfo_width()
+    altura = janela.winfo_height()
+    x = (janela.winfo_screenwidth() // 2) - (largura // 2)
+    y = (janela.winfo_screenheight() // 2) - (altura // 2)
+    janela.geometry(f"+{x}+{y}")
 
 # Criar janela principal do programa, além de configurar ela e manter aberta e demais coisas
 def criar_app():
     janela = tk.Tk()
     janela.title("lembrete de água")
-    janela.geometry("500x400")
+    janela.configure(bg=BG)
+    janela.geometry("500x500")
 
     # Definindo input para META DIÁRIA de água
-
-    label_meta = tk.Label(janela, text="Meta diária(ml)")
-    label_meta.pack()
-
-    input_meta = tk.Entry(janela)
-    input_meta.pack()
+    criar_label(janela, "Meta diária (ml)").pack(pady=5)
+    input_meta = criar_entry(janela)
+    input_meta.pack(pady=3)
 
     # Definindo o input para o INTERVALO entre um copo e outro
-    label_intervalo = tk.Label(janela, text="Intervalo (min):")
-    label_intervalo.pack()
-
-    input_intervalo = tk.Entry(janela)
-    input_intervalo.pack()
+    criar_label(janela, "Intervalo (min)").pack(pady=5)
+    input_intervalo = criar_entry(janela)
+    input_intervalo.pack(pady=3)
 
     # Definindo input para a QUANTIDADE que foi consumido de água
-    label_consumo = tk.Label(janela, text="Quanto você bebeu (ml):")
-    label_consumo.pack()
-
-    input_consumo = tk.Entry(janela)
-    input_consumo.pack()
+    criar_label(janela, "Quanto você bebeu (ml)").pack(pady=5)
+    input_consumo = criar_entry(janela)
+    input_consumo.pack(pady=3)
 
     # Barra de progresso
-    from tkinter import ttk
-
-    barra_progresso = ttk.Progressbar(janela, length=200, mode='determinate')
-    barra_progresso.pack(pady=10)
-
-    label_progresso = tk.Label(janela, text="0 / 0 ml")
-    label_progresso.pack()
+    barra = criar_progressbar(janela)
+    barra.pack(pady=10)
+    label_prog = criar_label(janela, "0 / 0 ml")
+    label_prog.pack(pady=4)
 
     # Mensagem na tela de para erro/sucesso
-    label_mensagem = tk.Label(janela, text="", fg="red")
+    label_mensagem = criar_label(janela, "",)
     label_mensagem.pack(pady=5)
 
     # Botão de iniciar
-
-    botao = tk.Button(
-        janela,
-        text="Iniciar",
-        command=lambda: iniciar(
-            janela,
-            input_meta,
-            input_intervalo,
-            label_mensagem,
-            lembrar
-        )
-    )
-    botao.pack(pady=10)
+    btn_iniciar = criar_botao(janela, "Iniciar",
+                    lambda: handlers.iniciar(janela, input_meta,input_intervalo, label_mensagem))
+    btn_iniciar.pack(pady=3)
 
     # Botão de beber água
-    botao_beber = tk.Button(
-        janela,
-        text="Bebi água",
-        command=lambda: beber_agua(
-            label_mensagem,
-            input_consumo,
-            barra_progresso,
-            label_progresso,
-        )
-    )
-    botao_beber.pack(pady=10)
+    btn_agua = criar_botao(janela, "Bebi água",
+                lambda: handlers.beber_agua(label_mensagem,input_consumo, barra, label_prog))
+    btn_agua.config(bg="#1191b8")
+    btn_agua.pack(pady=8)
+
 
     # Botão para reiniciar
-    botao_parar = tk.Button(
-        janela,
-        text="Parar",
-        command=lambda: parar(label_mensagem)
-    )
-    botao_parar.pack(pady=10)
-
+    btn_parar = criar_botao(janela, "Parar",
+                lambda: handlers.parar(label_mensagem,barra,label_prog,input_consumo))
+    btn_parar.config(bg="#c7200e")
+    btn_parar.pack(pady=8)
+    centralizar(janela)
     return janela
 
 

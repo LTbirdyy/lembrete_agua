@@ -10,8 +10,8 @@ caminho = os.path.join(BASE_DIR, "data", "historico.json")
 def salvar_dia(consumo, meta):
 
     # cria pasta se não existir
-    os.makedirs("data", exist_ok=True)
-    print(caminho)
+    os.makedirs(os.path.join(BASE_DIR, "data"), exist_ok=True)
+
     # dados do dia
     hoje = datetime.now().strftime("%d/%m/%Y")
     bateu_meta = consumo >= meta

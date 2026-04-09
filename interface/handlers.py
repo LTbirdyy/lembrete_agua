@@ -18,7 +18,7 @@ def lembrar(janela, label_mensagem):
     # Parar o lembrete
     if not rodando:
         return
-    label_mensagem.config(text="Hora de beber água", fg="blue")
+    label_mensagem.config(text="Hora de beber água", fg="#1191b8")
     tocar_alerta()
 
     # Chamar a função do som do alerta
@@ -26,7 +26,7 @@ def lembrar(janela, label_mensagem):
 
 
 # Função do botão
-def iniciar(janela, input_meta, input_intervalo, label_mensagem, lembrar):
+def iniciar(janela, input_meta, input_intervalo, label_mensagem):
     global intervalo_ms, rodando
 
     try:
@@ -42,7 +42,7 @@ def iniciar(janela, input_meta, input_intervalo, label_mensagem, lembrar):
         # Pega o valor que o user colocou como meta daiira
         definir_meta(meta)
 
-        label_mensagem.config(text="Configuração salva!", fg="green")
+        label_mensagem.config(text="Meta salva!", fg="green")
 
         # Preciso converte para milisengundos para usar o after() dpo tkinter
 
@@ -58,7 +58,7 @@ def iniciar(janela, input_meta, input_intervalo, label_mensagem, lembrar):
 
     # Mensagem na tela de erro de tipo inválido
     except ValueError:
-        label_mensagem.config(text="Insira apenas números")
+        label_mensagem.config(text="Insira apenas números", fg="red")
 
 
 # Função para a quantidade de água ja consumida
@@ -77,24 +77,34 @@ def beber_agua(label_mensagem,input_consumo, barra_progresso, label_progresso):
         barra_progresso['value'] = progresso
         label_progresso.config(text=f"{total} / {get_meta()} ml")
 
-        if total >= get_meta():
+        if total == get_meta():
             rodando = False
             barra_progresso['value'] = 100
             label_mensagem.config(text="Parabéns você bateu a meta", fg="green")
 
             salvar_dia(total, get_meta())
+        if total > get_meta():
+            label_mensagem.config(text="Muito bem você ultrapassou a meta", fg="purple")
 
     except ValueError:
         label_mensagem.config(text="Digite apenas números!", fg="red")
 
-def parar(label_mensagem):
+def parar(label_mensagem,barra_progresso,label_progresso, input_consumo):
     global rodando
     rodando = False
-    print("papap")
+
     consumo = get_consumo()
     meta = get_meta()
 
     salvar_dia(consumo, meta)
+    # Zerar a barra
+    barra_progresso['value'] = 0
+
+    # Zerar o texto
+    label_progresso.config(text="0 / 0 ml")
+
+    # Limpa o input
+    input_consumo.delete(0, 'end')
 
     label_mensagem.config(text="Intervalo parado e dados salvos", fg="orange")
 
