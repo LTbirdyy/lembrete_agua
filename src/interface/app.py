@@ -1,6 +1,5 @@
 from src.interface import handlers
 from src.interface.layout import *
-import src.interface.layout
 # Adicionar icon
 
 
@@ -9,6 +8,7 @@ def configurar_icone(janela):
     base_dir = os.path.dirname(os.path.dirname(__file__))
     caminho = os.path.join(base_dir, "assets", "icon.ico")
     janela.iconbitmap(caminho)
+
 
 # Função para deixar centralizado em relação ao monitor
 def centralizar(janela):
