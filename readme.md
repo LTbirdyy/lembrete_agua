@@ -1,33 +1,35 @@
 # 💧 Lembrete de Água
 
+[![Build](https://github.com/LTbirdyy/lembrete_agua/actions/workflows/python.yml/badge.svg)](https://github.com/LTbirdyy/lembrete_agua/actions)
+
 Aplicação desktop desenvolvida em Python com o objetivo de ajudar usuários a manterem uma rotina saudável de hidratação ao longo do dia.
 
 ---
 
-## 🎯 Problema
+## 🎯 Descrição do Problema
 
-Muitas pessoas esquecem de beber água durante o dia, o que pode causar problemas de saúde como desidratação, fadiga e baixa concentração.
+Muitas pessoas esquecem de beber água durante o dia, o que pode causar problemas de saúde como desidratação, fadiga e baixa concentração. 
 
 ---
 
-## ✅ Solução
+## ✅ Proposta de Solução
 
 Este projeto oferece um sistema simples que:
 
 * Define uma meta diária de consumo de água
-* Envia lembretes periódicos
+* Envia lembretes periódicos definidos pela pessoa
 * Registra o consumo ao longo do dia
 * Armazena histórico em arquivo JSON
 
 ---
 
-## 🖥️ Interface
+## Publico alvo
 
-Aplicação com interface gráfica utilizando Tkinter, permitindo interação simples e intuitiva com o usuário.
+O projeto foi feito pensando em ajudar as pessoas que trabalham ou passam muito tempo no computador e acabam esquecendo de beber água, sendo esse o público que mais se beneficiária dele
 
 ---
 
-## ⚙️ Funcionalidades
+## ⚙️ Funcionalidades principais
 
 * 📊 Definir meta diária de água (ml)
 * ⏰ Configurar intervalo de lembretes
@@ -47,9 +49,25 @@ Aplicação com interface gráfica utilizando Tkinter, permitindo interação si
 
 ---
 
+## 🖥️ Interface
+
+Aplicação com interface gráfica utilizando Tkinter, permitindo interação simples e intuitiva com o usuário.
+
+---
+
+## 🛠️ Tecnologias utilizadas
+
+* Python 3.13
+* Tkinter (interface gráfica)
+* JSON (armazenamento de dados)
+* pytest
+* GitHub Action
+
+---
+
 ## 📦 Bibliotecas utilizadas
 
-### 🔹 Bibliotecas padrão do Python (não precisam instalar)
+### 🔹 Bibliotecas padrão do Python 
 
 * `tkinter` → interface gráfica
 * `json` → manipulação de arquivos JSON
@@ -87,24 +105,36 @@ lembrete_agua/
 ### 🔹 1. Clonar o repositório
 
 ```bash
+
 git clone https://github.com/LTbirdyy/lembrete_agua.git
 cd lembrete_agua-main
 ```
 
 ---
 
-### 🔹 2. Criar ambiente virtual (opcional, recomendado)
+### 🔹 2. Criar ambiente virtual 
+
+Caso seja Windows
 
 ```bash
+
 py -m venv .venv
 .venv\Scripts\activate
 ```
+
+Caso seja Linux ou macOS
+
+````bash
+
+source .venv/bin/activate
+````
 
 ---
 
 ### 🔹 3. Instalar dependências
 
 ```bash
+
 pip install -r requirements.txt
 ```
 
@@ -117,6 +147,7 @@ pip install -r requirements.txt
 O projeto deve ser executado como módulo, para evitar erro de importação.
 
 ```bash
+
 py -m src.main
 ```
 
@@ -127,6 +158,7 @@ py -m src.main
 Para rodar os testes:
 
 ```bash
+
 py -m pytest
 ```
 
@@ -137,6 +169,7 @@ py -m pytest
 Para verificar o código:
 
 ```bash
+
 py -m flake8
 ```
 
@@ -155,7 +188,7 @@ A cada push, o sistema verifica se o projeto está funcionando corretamente.
 
 ## 🔢 Versionamento
 
-O projeto segue versionamento semântico:
+O projeto segue versionamento semântico e se encontra na versão:
 
 ```
 v1.0.0
@@ -169,6 +202,8 @@ Gabriel Rosa
 
 ---
 
-## 📄 Licença
+## 📄 Link para o repositório
 
-Este projeto foi desenvolvido para fins acadêmicos.
+````
+https://github.com/LTbirdyy/lembrete_agua
+````
