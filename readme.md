@@ -107,7 +107,7 @@ lembrete_agua/
 ```bash
 
 git clone https://github.com/LTbirdyy/lembrete_agua.git
-cd lembrete_agua-main
+cd lembrete_agua
 ```
 
 ---
