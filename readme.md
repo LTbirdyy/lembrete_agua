@@ -191,7 +191,7 @@ A cada push, o sistema verifica se o projeto está funcionando corretamente.
 O projeto segue versionamento semântico e se encontra na versão:
 
 ```
-v1.0.3
+v1.0.1
 ```
 
 ---
