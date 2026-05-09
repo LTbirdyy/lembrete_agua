@@ -1,86 +1,100 @@
-from src.interface import handlers
-from src.interface.layout import *
-# Adicionar icon
+import streamlit as st
+import sys
+import os
+
+from src.logic.consumo import (
+    definir_meta,
+    adicionar_consumo,
+    calcular_progresso,
+    get_meta,
+    get_consumo
+)
+
+from services.clima import pegar_temperatura
+from src.logic.historico import salvar_dia  # ajuste se o nome for diferente
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+
+# SESSION STATE (FIX)
+if "meta" not in st.session_state:
+    st.session_state.meta = 0
+
+if "consumo" not in st.session_state:
+    st.session_state.consumo = 0
+
+# TÍTULO
+
+st.set_page_config(page_title="Lembrete de Água", layout="centered")
+
+st.title("💧 Lembrete de Água Inteligente")
+
+st.divider()
 
 
-def configurar_icone(janela):
-    import os
-    base_dir = os.path.dirname(os.path.dirname(__file__))
-    caminho = os.path.join(base_dir, "assets", "imagem", "agua.ico")
-    janela.iconbitmap(caminho)
+# COLUNAS DA META E DO CONSUMO
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.subheader("🎯 Meta diária")
+    meta_input = st.number_input("Meta (ml)", min_value=0, value=2000)
+
+    if st.button("Definir meta"):
+        definir_meta(meta_input)
+        st.session_state.meta = meta_input
+        st.session_state.consumo = 0
+        st.success("Meta definida!")
+
+with col2:
+    st.subheader("🥤 Consumo")
+    quantidade = st.number_input("Quantidade (ml)", min_value=0, value=200)
+
+    if st.button("Adicionar"):
+        novo = adicionar_consumo(quantidade)
+        st.session_state.consumo = novo
+        st.success(f"+{quantidade}ml")
+
+st.divider()
+
+# BARRA DE PROGRESSO
+
+meta = st.session_state.meta
+consumo = st.session_state.consumo
+
+st.subheader("📊 Progresso do dia")
+
+if meta > 0:
+    progresso = calcular_progresso()
+
+    st.progress(min(int(progresso), 100))
+
+    st.markdown(f"""
+    **{consumo}ml / {meta}ml**
+    """)
+
+    if progresso == 100:
+        st.success("🎉 Meta atingida! Parabéns!")
+    else:
+        st.success("Uau você ultrapassou a meta, parabéns!!")
+else:
+    st.info("Defina uma meta para começar")
+
+st.divider()
 
 
-# Função para deixar centralizado em relação ao monitor
-def centralizar(janela):
-    janela.update_idletasks()
-    largura = janela.winfo_width()
-    altura = janela.winfo_height()
-    x = (janela.winfo_screenwidth() // 2) - (largura // 2)
-    y = (janela.winfo_screenheight() // 2) - (altura // 2)
-    janela.geometry(f"+{x}+{y}")
+# CLIMA
 
+st.subheader("🌡️ Clima")
 
-# Criar janela principal do programa, além de configurar ela e manter aberta e demais coisas
-def criar_app():
+if st.button("Ver clima"):
+    st.info("⏳ API ainda não ativada (em breve...)")
 
-    # Caminho pro icone de agua
+st.divider()
 
-    janela = tk.Tk()
-    configurar_icone(janela)
-    janela.title("lembrete de água")
-    janela.configure(bg=BG)
-    janela.geometry("500x500")
+# HISTÓRICO
 
-    # Definindo input para META DIÁRIA de água
-    criar_label(janela, "Meta diária (ml)").pack(pady=5)
-    input_meta = criar_entry(janela)
-    input_meta.pack(pady=3)
+st.subheader("💾 Histórico")
 
-    # Definindo o input para o INTERVALO entre um copo e outro
-    criar_label(janela, "Intervalo (min)").pack(pady=5)
-    input_intervalo = criar_entry(janela)
-    input_intervalo.pack(pady=3)
-
-    # Definindo input para a QUANTIDADE que foi consumido de água
-    criar_label(janela, "Quanto você bebeu (ml)").pack(pady=5)
-    input_consumo = criar_entry(janela)
-    input_consumo.pack(pady=3)
-
-    # Barra de progresso
-    barra = criar_progressbar(janela)
-    barra.pack(pady=10)
-    label_prog = criar_label(janela, "0 / 0 ml")
-    label_prog.pack(pady=4)
-
-    # Mensagem na tela de para erro/sucesso
-    label_mensagem = criar_label(janela, "", )
-    label_mensagem.pack(pady=5)
-
-    # Botão de iniciar
-    btn_iniciar = criar_botao(
-        janela,
-        "Iniciar",
-        lambda: handlers.iniciar(janela, input_meta,
-                                 input_intervalo, label_mensagem))
-
-    btn_iniciar.pack(pady=3)
-
-    # Botão de beber água
-    btn_agua = criar_botao(
-        janela, "Bebi água",
-        lambda: handlers.beber_agua(label_mensagem, input_consumo,
-                                    barra, label_prog))
-
-    btn_agua.config(bg="#1191b8")
-    btn_agua.pack(pady=8)
-
-    # Botão para reiniciar
-    btn_parar = criar_botao(
-        janela, "Parar",
-        lambda: handlers.parar(label_mensagem, barra,
-                               label_prog, input_consumo))
-
-    btn_parar.config(bg="#c7200e")
-    btn_parar.pack(pady=8)
-    centralizar(janela)
-    return janela
+if st.button("Salvar dia"):
+    salvar_dia(consumo, meta)
+    st.success("Dia salvo!")

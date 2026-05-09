@@ -1,84 +1,67 @@
-# 💧 Lembrete de Água
+# 💧 Lembrete de Água Inteligente
 
 [![Build](https://github.com/LTbirdyy/lembrete_agua/actions/workflows/python.yml/badge.svg)](https://github.com/LTbirdyy/lembrete_agua/actions)
 
-Aplicação desktop desenvolvida em Python com o objetivo de ajudar usuários a manterem uma rotina saudável de hidratação ao longo do dia.
+Aplicação web desenvolvida em Python com o objetivo de ajudar usuários a manterem uma rotina saudável de hidratação ao longo do dia.
+
+---
+
+## 🚀 Aplicação Online
+
+Acesse aqui: *(adicione o link após o deploy)*
 
 ---
 
 ## 🎯 Descrição do Problema
 
-Muitas pessoas esquecem de beber água durante o dia, o que pode causar problemas de saúde como desidratação, fadiga e baixa concentração. 
+Muitas pessoas esquecem de beber água durante o dia, o que pode causar problemas como desidratação, fadiga e baixa concentração.
 
 ---
 
 ## ✅ Proposta de Solução
 
-Este projeto oferece um sistema simples que:
+Este projeto oferece um sistema interativo que:
 
 * Define uma meta diária de consumo de água
-* Envia lembretes periódicos definidos pela pessoa
-* Registra o consumo ao longo do dia
+* Permite registrar o consumo ao longo do dia
+* Exibe progresso em tempo real
+* Integra dados de clima para recomendações
 * Armazena histórico em arquivo JSON
 
 ---
 
-## Publico alvo
+## 👥 Público-alvo
 
-O projeto foi feito pensando em ajudar as pessoas que trabalham ou passam muito tempo no computador e acabam esquecendo de beber água, sendo esse o público que mais se beneficiária dele
+Pessoas que passam muito tempo no computador (trabalho, estudo, jogos) e acabam esquecendo de se hidratar.
 
 ---
 
 ## ⚙️ Funcionalidades principais
 
 * 📊 Definir meta diária de água (ml)
-* ⏰ Configurar intervalo de lembretes
-* 🔔 Alertas sonoros
 * ➕ Registrar consumo
-* 📈 Barra de progresso
-* 🛑 Parar e salvar dados
+* 📈 Barra de progresso dinâmica
+* 🌡️ Integração com API de clima
 * 💾 Histórico salvo em JSON
-
----
-
-## 🛠️ Tecnologias utilizadas
-
-* Python 3.x
-* Tkinter (interface gráfica)
-* JSON (armazenamento de dados)
-
----
-
-## 🖥️ Interface
-
-Aplicação com interface gráfica utilizando Tkinter, permitindo interação simples e intuitiva com o usuário.
+* 🎨 Interface web interativa (dashboard)
 
 ---
 
 ## 🛠️ Tecnologias utilizadas
 
 * Python 3.13
-* Tkinter (interface gráfica)
-* JSON (armazenamento de dados)
-* pytest
-* GitHub Action
+* Streamlit (interface web)
+* Requests (consumo de API)
+* JSON (armazenamento)
+* Pytest (testes automatizados)
+* GitHub Actions (CI)
 
 ---
 
-## 📦 Bibliotecas utilizadas
+## 🌐 API utilizada
 
-### 🔹 Bibliotecas padrão do Python 
-
-* `tkinter` → interface gráfica
-* `json` → manipulação de arquivos JSON
-* `os` → manipulação de caminhos
-* `datetime` → controle de datas
-* `winsound` → reprodução de som (Windows)
-
-### 🔹 Bibliotecas externas
-
-* `pytest` → testes automatizados
-* `flake8` → linting (análise estática)
+* OpenWeatherMap API
+  Utilizada para obter a temperatura atual e sugerir aumento no consumo de água em dias quentes.
 
 ---
 
@@ -88,11 +71,14 @@ Aplicação com interface gráfica utilizando Tkinter, permitindo interação si
 lembrete_agua/
 ├── src/
 │   ├── interface/
+│   │   └── app.py
 │   ├── logic/
-│   └── main.py
+│   ├── services/
 ├── data/
 │   └── historico.json
 ├── tests/
+├── .streamlit/
+│   └── config.toml
 ├── .github/workflows/
 ├── requirements.txt
 └── README.md
@@ -105,72 +91,58 @@ lembrete_agua/
 ### 🔹 1. Clonar o repositório
 
 ```bash
-
 git clone https://github.com/LTbirdyy/lembrete_agua.git
 cd lembrete_agua
 ```
 
 ---
 
-### 🔹 2. Criar ambiente virtual 
+### 🔹 2. Criar ambiente virtual
 
-Caso seja Windows
+#### Windows:
 
 ```bash
-
 py -m venv .venv
 .venv\Scripts\activate
 ```
 
-Caso seja Linux ou macOS
+#### Linux/macOS:
 
-````bash
-
+```bash
+python3 -m venv .venv
 source .venv/bin/activate
-````
+```
 
 ---
 
 ### 🔹 3. Instalar dependências
 
 ```bash
-
 pip install -r requirements.txt
 ```
 
 ---
 
-### 🔹 4. Executar o projeto
-
-⚠️ Importante:
-
-O projeto deve ser executado como módulo, para evitar erro de importação.
+### 🔹 4. Executar a aplicação
 
 ```bash
-
-py -m src.main
+python -m streamlit run src/interface/app.py
 ```
 
 ---
 
 ## 🧪 Testes automatizados
 
-Para rodar os testes:
-
 ```bash
-
-py -m pytest
+python -m pytest
 ```
 
 ---
 
-## 🧹 Linting (qualidade de código)
-
-Para verificar o código:
+## 🧹 Linting
 
 ```bash
-
-py -m flake8
+python -m flake8
 ```
 
 ---
@@ -180,18 +152,26 @@ py -m flake8
 O projeto utiliza GitHub Actions para:
 
 * Executar testes automaticamente
-* Validar padrão de código com flake8
+* Validar qualidade do código
 
-A cada push, o sistema verifica se o projeto está funcionando corretamente.
+---
+
+## 🏗️ Arquitetura
+
+O projeto foi estruturado seguindo separação de responsabilidades:
+
+* Interface → Streamlit (`interface/`)
+* Regras de negócio → (`logic/`)
+* Integrações externas (API) → (`services/`)
 
 ---
 
 ## 🔢 Versionamento
 
-O projeto segue versionamento semântico e se encontra na versão:
+Versão atual:
 
 ```
-v1.0.1
+v2.0.0
 ```
 
 ---
@@ -202,8 +182,6 @@ Gabriel Rosa
 
 ---
 
-## 📄 Link para o repositório
+## 📄 Repositório
 
-````
 https://github.com/LTbirdyy/lembrete_agua
-````
