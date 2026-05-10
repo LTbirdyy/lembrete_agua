@@ -1,4 +1,4 @@
 [flake8]
 max-line-length = 150
-ignore = F405, F824, F403
+ignore = F405, F824, F403, E402
 exclude = .venv
