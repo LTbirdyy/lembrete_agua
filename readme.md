@@ -8,7 +8,7 @@ Aplicação web desenvolvida em Python com o objetivo de ajudar usuários a mant
 
 ## 🚀 Aplicação Online
 
-Acesse aqui: *(adicione o link após o deploy)*
+Acesse aqui: https://lembreteagua-tfnfzda6zs9notewgwq3v2.streamlit.app
 
 ---
 
