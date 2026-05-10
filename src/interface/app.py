@@ -2,6 +2,8 @@ import streamlit as st
 import sys
 import os
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+
 from src.logic.consumo import (
     definir_meta,
     adicionar_consumo,
@@ -11,7 +13,6 @@ from src.logic.consumo import (
 from services.clima import pegar_clima
 from src.logic.historico import salvar_dia  # ajuste se o nome for diferente
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 # CSS para ficar bonito
 st.markdown("""
