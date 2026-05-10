@@ -1,10 +1,15 @@
 import requests
 import os
+import streamlit as st
 from dotenv import load_dotenv
 
 load_dotenv()
 
-API_KEY = os.getenv("API_KEY", "fake_key")
+API_KEY = (
+    st.secrets.get("API_KEY", None)
+    if hasattr(st, "secrets")
+    else None
+) or os.getenv("API_KEY")
 CIDADE = "Brasília"
 
 
