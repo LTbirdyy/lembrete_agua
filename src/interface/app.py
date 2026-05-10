@@ -183,7 +183,7 @@ if st.button("Atualizar clima"):
                       unsafe_allow_html=True)
         col2.markdown(f'<div class="metric-card">💧<br>Umidade<br><b>{clima["umidade"]}%</b></div>',
                       unsafe_allow_html=True)
-        col3.markdown(f'<div class="metric-card">🌬️<br>Cidade<br><b>{clima["cidade"]} m/s</b></div>',
+        col3.markdown(f'<div class="metric-card">🏠<br>Cidade<br><b>{clima["cidade"]} </b></div>',
                       unsafe_allow_html=True)
         col4.markdown(f'<div class="metric-card">☁️<br>Condição<br><b>{clima["descricao"]}</b></div>',
                       unsafe_allow_html=True)
