@@ -5,15 +5,21 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_KEY = (
-    st.secrets.get("API_KEY", None)
-    if hasattr(st, "secrets")
-    else None
-) or os.getenv("API_KEY")
 CIDADE = "Brasília"
 
 
 def pegar_clima():
+    # pegar API key de forma segura
+    API_KEY = None
+
+    try:
+        API_KEY = st.secrets.get("API_KEY")
+    except Exception:
+        pass
+
+    if not API_KEY:
+        API_KEY = os.getenv("API_KEY", "fake_key")
+
     url = "http://api.openweathermap.org/data/2.5/weather"
 
     params = {
