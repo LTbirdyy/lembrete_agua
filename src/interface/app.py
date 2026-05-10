@@ -6,8 +6,6 @@ from src.logic.consumo import (
     definir_meta,
     adicionar_consumo,
     calcular_progresso,
-    get_meta,
-    get_consumo
 )
 
 from services.clima import pegar_clima
@@ -28,10 +26,10 @@ st.markdown("""
 }
 
 /* texto escuro dentro */
-.main-card h1, 
-.main-card h2, 
-.main-card h3, 
-.main-card p, 
+.main-card h1,
+.main-card h2,
+.main-card h3,
+.main-card p,
 .main-card label {
     color: #111 !important;
 }
@@ -131,7 +129,7 @@ st.subheader("📊 Progresso do dia")
 st.markdown(f"""
 <div style="background-color:#333; border-radius:10px;">
     <div style="
-        width:{max(min(progresso,100), 5)}%;
+        width:{max(min(progresso, 100), 5)}%;
         background-color:{cor};
         padding:10px;
         border-radius:10px;

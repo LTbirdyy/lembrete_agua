@@ -7,6 +7,7 @@ load_dotenv()
 API_KEY = os.getenv("API_KEY")
 CIDADE = "Brasília"
 
+
 def pegar_clima():
     url = "http://api.openweathermap.org/data/2.5/weather"
 
