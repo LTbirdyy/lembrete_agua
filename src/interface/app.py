@@ -12,6 +12,7 @@ from src.logic.consumo import (
 
 from services.clima import pegar_clima
 from src.logic.historico import salvar_dia  # ajuste se o nome for diferente
+from src.interface.services.db import buscar_historico
 
 
 # CSS para ficar bonito
@@ -204,3 +205,9 @@ st.markdown('<div class="card">', unsafe_allow_html=True)
 if st.button("💾 Salvar dia"):
     salvar_dia(consumo, meta)
     st.success("Dados salvos!")
+
+
+if st.button("📜 Ver histórico"):
+    dados = buscar_historico()
+
+    st.dataframe(dados)
