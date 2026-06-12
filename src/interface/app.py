@@ -12,7 +12,7 @@ from src.logic.consumo import (
 
 from services.clima import pegar_clima
 from src.logic.historico import salvar_dia  # ajuste se o nome for diferente
-from src.interface.services.historico_service import buscar_historico
+from src.interface.services import buscar_historico
 
 
 # CSS para ficar bonito

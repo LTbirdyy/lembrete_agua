@@ -26,3 +26,4 @@ def buscar_historico():
     )
 
     return resposta.data
+#funcao
