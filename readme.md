@@ -27,6 +27,8 @@ Este projeto oferece um sistema interativo que:
 * Exibe progresso em tempo real
 * Integra dados de clima para recomendações
 * Armazena histórico em banco de dados na nuvem
+* Permite consultar o histórico de consumo
+* Apresenta gráficos para análise da hidratação ao longo do tempo
 
 ---
 
@@ -44,6 +46,8 @@ Pessoas que passam muito tempo no computador (trabalho, estudo ou lazer) e acaba
 * 🌡️ Integração com API de clima
 * 💧 Recomendações de hidratação com base nas condições climáticas
 * ☁️ Histórico salvo em banco de dados Supabase
+* 📋 Visualização do histórico de consumo
+* 📊 Gráficos de acompanhamento da hidratação
 * 🎨 Interface web interativa (dashboard)
 * 🚀 Aplicação disponível online
 
@@ -91,6 +95,19 @@ Tabela utilizada:
 | consumo    | integer |
 | meta       | integer |
 | bateu_meta | boolean |
+
+---
+
+## 📊 Histórico e Visualização de Dados
+
+Os dados registrados pelos usuários são armazenados no Supabase e podem ser consultados diretamente pela aplicação.
+
+A interface disponibiliza:
+
+* Histórico completo de registros de hidratação.
+* Visualização tabular dos dados armazenados.
+* Gráficos para acompanhamento da evolução do consumo de água.
+* Indicadores que auxiliam na análise dos hábitos de hidratação.
 
 ---
 
@@ -230,7 +247,7 @@ O projeto utiliza Git e GitHub Flow:
 Versão atual:
 
 ```text
-v3.0.0
+v3.1.0
 ```
 
 ---
