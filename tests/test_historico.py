@@ -1,8 +1,15 @@
-import os
-from src.logic.historico import salvar_dia, caminho
+from unittest.mock import patch
+from src.logic.historico import salvar_dia
 
 
-def test_salvar_historico():
-    salvar_dia(1000, 2000)
+def test_salvar_dia_supabase():
 
-    assert os.path.exists(caminho)
+    with patch(
+        "src.logic.historico.get_supabase"
+    ) as mock_supabase:
+
+        salvar_dia(1500, 2000)
+
+        mock_supabase.return_value.table.assert_called_once_with(
+            "historico"
+        )

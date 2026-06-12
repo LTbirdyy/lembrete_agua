@@ -26,13 +26,13 @@ Este projeto oferece um sistema interativo que:
 * Permite registrar o consumo ao longo do dia
 * Exibe progresso em tempo real
 * Integra dados de clima para recomendações
-* Armazena histórico em arquivo JSON
+* Armazena histórico em banco de dados na nuvem
 
 ---
 
 ## 👥 Público-alvo
 
-Pessoas que passam muito tempo no computador (trabalho, estudo, jogos) e acabam esquecendo de se hidratar.
+Pessoas que passam muito tempo no computador (trabalho, estudo ou lazer) e acabam esquecendo de se hidratar.
 
 ---
 
@@ -42,8 +42,10 @@ Pessoas que passam muito tempo no computador (trabalho, estudo, jogos) e acabam 
 * ➕ Registrar consumo
 * 📈 Barra de progresso dinâmica
 * 🌡️ Integração com API de clima
-* 💾 Histórico salvo em JSON
+* 💧 Recomendações de hidratação com base nas condições climáticas
+* ☁️ Histórico salvo em banco de dados Supabase
 * 🎨 Interface web interativa (dashboard)
+* 🚀 Aplicação disponível online
 
 ---
 
@@ -51,31 +53,61 @@ Pessoas que passam muito tempo no computador (trabalho, estudo, jogos) e acabam 
 
 * Python 3.13
 * Streamlit (interface web)
+* Supabase (banco de dados)
 * Requests (consumo de API)
-* JSON (armazenamento)
+* OpenWeatherMap API
 * Pytest (testes automatizados)
-* GitHub Actions (CI)
+* Flake8 (análise estática)
+* GitHub Actions (CI/CD)
 
 ---
 
 ## 🌐 API utilizada
 
-* OpenWeatherMap API
-  Utilizada para obter a temperatura atual e sugerir aumento no consumo de água em dias quentes.
+### OpenWeatherMap API
+
+Utilizada para obter informações climáticas em tempo real:
+
+* Temperatura
+* Umidade
+* Sensação térmica
+* Velocidade do vento
+* Condição climática
+
+Esses dados são utilizados para fornecer recomendações personalizadas de hidratação.
+
+---
+
+## 🗄️ Banco de Dados
+
+O projeto utiliza o Supabase para armazenamento persistente dos dados.
+
+Tabela utilizada:
+
+| Campo      | Tipo    |
+| ---------- | ------- |
+| id         | bigint  |
+| data       | text    |
+| consumo    | integer |
+| meta       | integer |
+| bateu_meta | boolean |
 
 ---
 
 ## 📁 Estrutura do projeto
 
-```
+```text
 lembrete_agua/
 ├── src/
 │   ├── interface/
+│   │   ├── services/
+│   │   │   ├── clima.py
+│   │   │   └── db.py
 │   │   └── app.py
 │   ├── logic/
-│   ├── services/
-├── data/
-│   └── historico.json
+│   │   ├── consumo.py
+│   │   └── historico.py
+│
 ├── tests/
 ├── .streamlit/
 │   └── config.toml
@@ -99,14 +131,14 @@ cd lembrete_agua
 
 ### 🔹 2. Criar ambiente virtual
 
-#### Windows:
+#### Windows
 
 ```bash
 py -m venv .venv
 .venv\Scripts\activate
 ```
 
-#### Linux/macOS:
+#### Linux/macOS
 
 ```bash
 python3 -m venv .venv
@@ -123,10 +155,23 @@ pip install -r requirements.txt
 
 ---
 
-### 🔹 4. Executar a aplicação
+### 🔹 4. Configurar variáveis de ambiente
+
+Crie um arquivo `.env` na raiz do projeto:
+
+```env
+API_KEY=sua_chave_openweathermap
+
+SUPABASE_URL=sua_url_supabase
+SUPABASE_KEY=sua_chave_supabase
+```
+
+---
+
+### 🔹 5. Executar a aplicação
 
 ```bash
-python -m streamlit run src/interface/app.py
+streamlit run src/interface/app.py
 ```
 
 ---
@@ -153,6 +198,7 @@ O projeto utiliza GitHub Actions para:
 
 * Executar testes automaticamente
 * Validar qualidade do código
+* Garantir a integridade antes do merge na branch principal
 
 ---
 
@@ -162,7 +208,20 @@ O projeto foi estruturado seguindo separação de responsabilidades:
 
 * Interface → Streamlit (`interface/`)
 * Regras de negócio → (`logic/`)
-* Integrações externas (API) → (`services/`)
+* Serviços externos → (`services/`)
+* Banco de dados → Supabase
+
+---
+
+## 🔀 Fluxo de Desenvolvimento
+
+O projeto utiliza Git e GitHub Flow:
+
+* Criação de Issues para planejamento
+* Desenvolvimento em branches separadas
+* Pull Requests para integração
+* Code Review entre integrantes
+* Merge apenas após aprovação e testes automatizados
 
 ---
 
@@ -170,15 +229,16 @@ O projeto foi estruturado seguindo separação de responsabilidades:
 
 Versão atual:
 
-```
-v2.0.0
+```text
+v3.0.0
 ```
 
 ---
 
-## 👨‍💻 Autor
+## 👨‍💻 Integrantes
 
-Gabriel Rosa
+* Gabriel Rosa
+* José Gabriel
 
 ---
 
